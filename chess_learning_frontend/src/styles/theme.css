@@ -1,0 +1,198 @@
+:root {
+  --ocean-primary: #2563EB;  /* blue-600 */
+  --ocean-primary-50: #eff6ff;
+  --ocean-primary-100: #dbeafe;
+  --ocean-primary-200: #bfdbfe;
+  --ocean-primary-300: #93c5fd;
+  --ocean-primary-700: #1d4ed8;
+
+  --ocean-amber: #F59E0B;    /* amber-500 */
+  --ocean-amber-600: #d97706;
+
+  --ocean-error: #EF4444;
+  --ocean-bg: #f9fafb;       /* gray-50 */
+  --ocean-surface: #ffffff;
+  --ocean-text: #111827;     /* gray-900 */
+  --ocean-muted: #6b7280;    /* gray-500 */
+
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 6px 24px rgba(0,0,0,0.08);
+
+  --board-light: #f3f4f6; /* gray-100 */
+  --board-dark: #9ca3af;  /* gray-400 */
+  --board-highlight: rgba(37, 99, 235, 0.25);
+  --board-lastmove: rgba(245, 158, 11, 0.25);
+  --board-check: rgba(239, 68, 68, 0.3);
+}
+
+[data-theme="dark"] {
+  --ocean-bg: #0f172a;       /* slate-900 */
+  --ocean-surface: #111827;  /* gray-900 */
+  --ocean-text: #e5e7eb;     /* gray-200 */
+  --ocean-muted: #9ca3af;    /* gray-400 */
+
+  --board-light: #1f2937; /* gray-800 */
+  --board-dark: #374151;  /* gray-700 */
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+  --shadow-md: 0 6px 24px rgba(0,0,0,0.35);
+}
+
+/* Utility */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.btn {
+  background: var(--ocean-primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn:active { transform: translateY(0); }
+
+.btn-secondary {
+  background: var(--ocean-amber);
+  color: #0b0f1a;
+}
+.card {
+  background: var(--ocean-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--ocean-surface);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  box-shadow: var(--shadow-sm);
+}
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 24px;
+}
+.nav-spacer { flex: 1; }
+.navlink {
+  color: var(--ocean-text);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+.navlink.active {
+  background: var(--ocean-primary-50);
+  color: var(--ocean-primary);
+}
+.theme-toggle {
+  background: var(--ocean-primary);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 20px;
+}
+@media (max-width: 980px) {
+  .layout { grid-template-columns: 1fr; }
+}
+.board-wrap {
+  background: var(--ocean-surface);
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+.board {
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 1/1;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.square {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 2.2rem;
+  user-select: none;
+}
+.square.light { background: var(--board-light); }
+.square.dark { background: var(--board-dark); }
+.square.highlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--board-highlight);
+}
+.square.lastmove::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--board-lastmove);
+}
+.square.check::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--board-check);
+}
+.move-dot {
+  width: 28%;
+  height: 28%;
+  background: rgba(37,99,235,0.8);
+  border-radius: 999px;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.75);
+}
+.panel {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.lesson-card {
+  padding: 16px;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+.title {
+  margin: 8px 0 0 0;
+  color: var(--ocean-text);
+}
+.subtitle {
+  margin: 0;
+  color: var(--ocean-muted);
+}
